@@ -2467,6 +2467,10 @@ body {
       <input type="text" id="fPlate" placeholder="如：鲁B·12345（选填）" maxlength="10" autocomplete="off">
     </div>
     <div class="field">
+      <label>联系方式</label>
+      <input type="tel" id="fPhone" placeholder="请输入手机号（选填）" maxlength="11" autocomplete="off">
+    </div>
+    <div class="field">
       <label>服务地址 <span class="req">*</span></label>
       <textarea id="fAddress" rows="2" placeholder="请输入详细地址（小区、楼栋、单元、门牌号）"></textarea>
     </div>
@@ -2490,6 +2494,7 @@ function generateQR() {
   var name = document.getElementById('fName').value.trim();
   var idCard = document.getElementById('fIdCard').value.trim().toUpperCase();
   var plate = document.getElementById('fPlate').value.trim().toUpperCase();
+  var phone = document.getElementById('fPhone').value.trim();
   var address = document.getElementById('fAddress').value.trim();
 
   if (!name) { alert('请填写姓名'); return; }
@@ -2499,7 +2504,7 @@ function generateQR() {
     return;
   }
 
-  var jsonStr = encodeURIComponent([name, idCard, plate, address].join('|'));
+  var jsonStr = encodeURIComponent([name, idCard, plate, phone, address].join('|'));
 
   var qrEl = document.getElementById('qrcode');
   qrEl.innerHTML = '';
@@ -2531,7 +2536,8 @@ function generateQR() {
     '<div class="row"><span class="k">姓名</span><span class="v">' + esc(name) + '</span></div>' +
     '<div class="row"><span class="k">身份证</span><span class="v">' + esc(idCard || '未填写') + '</span></div>' +
     '<div class="row"><span class="k">车牌号</span><span class="v">' + esc(plate || '未填写') + '</span></div>' +
-    '<div class="row"><span class="k">地址</span><span class="v">' + esc(address) + '</span></div>';
+    '<div class="row"><span class="k">联系方式</span><span class="v">' + esc(phone || '未填写') + '</span></div>' +
+    '<div class="row"><span class="k">服务地址</span><span class="v">' + esc(address) + '</span></div>';
 
   document.getElementById('formArea').style.display = 'none';
   document.getElementById('qrArea').classList.add('show');
