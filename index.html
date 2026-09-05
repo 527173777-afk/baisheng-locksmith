@@ -203,22 +203,21 @@ function generateQR() {
   }
 
   var data = {
-    name: name,
-    idCard: idCard,
-    plate: plate,
-    address: address,
-    t: Date.now()
+    n: name,
+    i: idCard,
+    p: plate,
+    a: address
   };
   var jsonStr = JSON.stringify(data);
 
   document.getElementById('qrcode').innerHTML = '';
   new QRCode(document.getElementById('qrcode'), {
     text: jsonStr,
-    width: 220,
-    height: 220,
+    width: 256,
+    height: 256,
     colorDark: '#123c7a',
     colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.M
+    correctLevel: QRCode.CorrectLevel.L
   });
 
   var summary = document.getElementById('infoSummary');
