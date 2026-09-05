@@ -2499,7 +2499,7 @@ function generateQR() {
     return;
   }
 
-  var jsonStr = [name, idCard, plate, address].join('|');
+  var jsonStr = encodeURIComponent([name, idCard, plate, address].join('|'));
 
   var qrEl = document.getElementById('qrcode');
   qrEl.innerHTML = '';
